@@ -30,14 +30,15 @@ verbose "Installation de Apache"
 apt-get install apache2 -y >> mariadb_install.log
 verbose "Installation de php"
 apt-get install libapache2-mod-php7.3 php7.3-mysql -y >> mariadb_install.log
-verbose "Installation de unzip"
-apt-get install unzip -y >> mariadb_install.log
+#verbose "Installation de unzip"
+#apt-get install unzip -y >> mariadb_install.log
 tmpDir=$(mktemp -d)
 cd $tmpDir
 verbose "Téléchargement de phpMyAdmin"
-wget -a mariadb_install.log --show-progress https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.zip
+wget -a mariadb_install.log --show-progress https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz
 verbose "Extraction de l'archive de phpMyAdmin"
-unzip phpMyAdmin-latest-all-languages.zip -d /var/www/html >> mariadb_install.log
+tar -xzf phpMyAdmin-latest-all-languages.tar.gz -C /var/www/html >> mariadb_install.log
+#unzip phpMyAdmin-latest-all-languages.zip -d /var/www/html >> mariadb_install.log
 mv /var/www/html/phpMyAdmin* /var/www/html/phpMyAdmin >> mariadb_install.log
 chown -R www-data:www-data /var/www/html/phpMyAdmin >> mariadb_install.log
 rm -r $tmpDir
