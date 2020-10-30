@@ -1,0 +1,5 @@
+#Ne garder que le script
+5*
+*.cnf
+*.conf
+*.php
